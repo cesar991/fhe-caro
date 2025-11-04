@@ -1,20 +1,46 @@
-# FHEVM React Template
+# ⚡ FHESoulSign
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+A decentralized FHE-powered dApp that lets users **securely register their birth date** and **reveal their encrypted destiny** through numerology — all without exposing private information on-chain.
 
-## 🚀 What is FHEVM?
+Built with **React + FHEVM SDK + Wagmi + RainbowKit**.
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+---
 
-## ✨ Features
+## 🌌 What is FHESoulSign?
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+**FHESoulSign** demonstrates how to combine **Fully Homomorphic Encryption (FHE)** with **Ethereum smart contracts** to build a privacy-preserving personality app.
 
+- Users **encrypt their date of birth** directly in the browser using the FHEVM SDK.  
+- The encrypted data is then **stored and computed on-chain** — but never decrypted by the contract.
+- The user can later **decrypt their own result locally**, revealing their **Life Path Number**, **Zodiac**, and **soul traits**, without ever leaking their real date of birth.
+
+---
+
+## 🔮 Features
+
+- 🔐 **Encrypted Birth Registration** — store your birth date in ciphertext.
+- 💫 **Self Decryption** — only you can decrypt and reveal your result.
+- 🌠 **Life Path Meaning** — numerology interpretation (1–9, 11, 22, 33).
+- 🌙 **Zodiac & Destiny Insights** — fun traits based on birth date.
+- 🧩 **FHE On-Chain Logic** — built with Zama’s FHEVM.
+- ⚡ **React Frontend + Wagmi Integration** — smooth web3 UX.
+
+---
+
+## 🧱 Smart Contract
+
+**File:** `contracts/FHESoulSign.sol`
+
+### Functions
+| Function | Description |
+|-----------|-------------|
+| `registerBirth(einput, proof)` | Registers an encrypted birth date for the sender. Only once per wallet. |
+| `getEncryptedBirth(address)` | Returns the encrypted birth data associated with a user. |
+| `isRegistered(address)` | Checks if an address has registered. |
+
+Each stored value is an `euint32`, encrypted and verified with Zama’s FHE toolkit.
+
+---
 ## 📋 Prerequinextjss
 
 Before you begin, ensure you have:
@@ -31,7 +57,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fhevm-react-template
+cd fhe-soul-sign
 
 # Initialize submodules (includes fhevm-hardhat-template)
 git submodule update --init --recursive
@@ -124,7 +150,7 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 This template uses a monorepo structure with three main packages:
 
 ```
-fhevm-react-template/
+fhe-soul-sign/
 ├── packages/
 │   ├── fhevm-hardhat-template/    # Smart contracts & deployment
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -134,8 +160,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useFHESoulSign.tsx`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 

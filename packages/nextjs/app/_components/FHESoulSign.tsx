@@ -99,7 +99,7 @@ export const FHESoulSign = () => {
         className="w-full flex flex-col items-center justify-center text-center"
         style={{ height: "calc(100vh - 60px)" }}
       >
-        <h2 className="text-2xl font-bold mb-4">🔮 Connect your wallet to view your destiny</h2>
+        <h2 className="text-2xl font-bold mb-4">Connect your wallet to view your destiny</h2>
         <RainbowKitCustomConnectButton />
       </div>
     );
