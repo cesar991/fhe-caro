@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { FHECaro } from "./FHECaro";
-export type { FHECounter } from "./FHECounter";

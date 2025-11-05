@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/helper/contract";
 const deployedContracts = {
   11155111: {
     FHECaro: {
-      address: "0x3AE84aDD54b22a102d56Bcba53cf01136c6319D1",
+      address: "0xE1A56824738035cDF397fF34CD735598C56Bc2Fb",
       abi: [
         {
           inputs: [
