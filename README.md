@@ -1,19 +1,54 @@
-# FHEVM React Template
+# ❌⭕ FHECaro — Privacy-Preserved Tic-Tac-Toe dApp
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+A decentralized, privacy-preserving **Caro (Tic-Tac-Toe)** game built on **FHEVM (Fully Homomorphic Encryption Virtual Machine)**.  
+Players can record their match results (**Win / Lose / Draw**) directly on-chain — but all results remain **encrypted** using Fully Homomorphic Encryption.
 
-## 🚀 What is FHEVM?
+---
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+## 🧠 What is FHECaro?
 
-## ✨ Features
+`FHECaro` demonstrates how to apply **FHE (Fully Homomorphic Encryption)** in a fun and simple way.  
+Each player submits encrypted results, and only they can later decrypt their own match history — ensuring **total privacy** while keeping data **verifiable on-chain**.
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+### 🔒 Privacy by Design
+
+- All match results are stored as encrypted integers (`euint32`).
+- Only the data owner can decrypt their own submissions.
+- The blockchain and contract **never reveal plaintext data**.
+- Encryption and decryption are handled via the **Zama FHEVM SDK**.
+
+---
+
+## ⚙️ Smart Contract Overview
+
+**Contract:** [`FHECaro.sol`](./contracts/FHECaro.sol)  
+**Network:** Sepolia (Zama FHEVM configuration)
+
+| Function | Description |
+|-----------|--------------|
+| `submitResult(externalEuint32 encryptedResult, bytes proof)` | Submit encrypted match result (`1 = Win`, `0 = Lose`, `2 = Draw`). |
+| `getMatchHistory(address user)` | Retrieve all encrypted results submitted by a user. |
+
+---
+
+## 💻 Frontend Features
+
+- 🎮 Minimal **React + Vite** frontend using TailwindCSS and Framer Motion.  
+- 🧩 Connect wallet with **RainbowKit + Wagmi**.
+- 🔐 Integrate **FHEVM SDK** for encryption/decryption.  
+- 🏆 Display results as:  
+  - 🟢 **Win**  
+  - 🔴 **Lose**  
+  - 🟡 **Draw**
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Install Dependencies
+```bash
+npm install
+
 
 ## 📋 Prerequinextjss
 
@@ -31,7 +66,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fhevm-react-template
+cd fhe-caro
 
 # Initialize submodules (includes fhevm-hardhat-template)
 git submodule update --init --recursive
@@ -124,7 +159,7 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 This template uses a monorepo structure with three main packages:
 
 ```
-fhevm-react-template/
+fhe-caro/
 ├── packages/
 │   ├── fhevm-hardhat-template/    # Smart contracts & deployment
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -134,8 +169,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useFHECaro.tsx`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 
