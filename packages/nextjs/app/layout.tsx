@@ -5,7 +5,7 @@ import "~~/styles/globals.css";
 import { getMetadata } from "~~/utils/helper/getMetadata";
 
 export const metadata = getMetadata({
-  title: "Zama Template",
+  title: "FHE Caro",
   description: "Built with FHEVM",
 });
 
@@ -18,7 +18,7 @@ const DappWrapper = ({ children }: { children: React.ReactNode }) => {
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="bg-gradient-to-br from-[#3b2f00] via-[#1f1600] to-[#0f0900]">
         <ThemeProvider enableSystem>
           <DappWrapperWithProviders>{children}</DappWrapperWithProviders>
         </ThemeProvider>
