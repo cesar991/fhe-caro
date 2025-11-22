@@ -2,14 +2,14 @@
 pragma solidity ^0.8.24;
 
 import {FHE, euint32, externalEuint32} from "@fhevm/solidity/lib/FHE.sol";
-import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /**
  * @title FHESoulSign
  * @notice A decentralized encrypted registry where each user can record their encrypted birth date.
  *         All data is stored privately using Fully Homomorphic Encryption (FHE).
  */
-contract FHESoulSign is SepoliaConfig {
+contract FHESoulSign is ZamaEthereumConfig {
     /// @notice Stores each user's encrypted birth date.
     mapping(address => euint32) private _encryptedBirth;
 

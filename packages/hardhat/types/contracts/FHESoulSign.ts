@@ -23,12 +23,16 @@ import type {
 export interface FHESoulSignInterface extends Interface {
   getFunction(
     nameOrSignature:
+      | "confidentialProtocolId"
       | "getEncryptedBirth"
       | "isRegistered"
-      | "protocolId"
       | "registerBirth"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "confidentialProtocolId",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "getEncryptedBirth",
     values: [AddressLike]
@@ -36,10 +40,6 @@ export interface FHESoulSignInterface extends Interface {
   encodeFunctionData(
     functionFragment: "isRegistered",
     values: [AddressLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "protocolId",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "registerBirth",
@@ -47,6 +47,10 @@ export interface FHESoulSignInterface extends Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "confidentialProtocolId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getEncryptedBirth",
     data: BytesLike
   ): Result;
@@ -54,7 +58,6 @@ export interface FHESoulSignInterface extends Interface {
     functionFragment: "isRegistered",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "registerBirth",
     data: BytesLike
@@ -104,11 +107,11 @@ export interface FHESoulSign extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
+
   getEncryptedBirth: TypedContractMethod<[user: AddressLike], [string], "view">;
 
   isRegistered: TypedContractMethod<[user: AddressLike], [boolean], "view">;
-
-  protocolId: TypedContractMethod<[], [bigint], "view">;
 
   registerBirth: TypedContractMethod<
     [birthEncrypted: BytesLike, proof: BytesLike],
@@ -121,14 +124,14 @@ export interface FHESoulSign extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "confidentialProtocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "getEncryptedBirth"
   ): TypedContractMethod<[user: AddressLike], [string], "view">;
   getFunction(
     nameOrSignature: "isRegistered"
   ): TypedContractMethod<[user: AddressLike], [boolean], "view">;
-  getFunction(
-    nameOrSignature: "protocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "registerBirth"
   ): TypedContractMethod<
